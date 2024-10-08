@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <header>
+        <h1>VirtualLearn</h1>
+
+        <!--nav-->
+        <nav>
+            <ul class="Home_nav_Create_Join_nav">
+                <li class="Home_nav"><a href="#Home" id="defaultopen"><button>Home</button></a></li>
+                <li class="Help_nav"><a href="#Help"><button><span>?</span>&nbsp;Help</button></a></li>
+                <li class="Feed_Back_nav"><a href="#Feed_back"><button>Feed-Back</button></a></li>
+                <li class="More_nav"><a href="#More"><button>...</button></a></li>
+            </ul>
+        </nav>
+    </header>
+    <hr>
+    <main>
+        <div class="More" id="More">
+            <ul>
+                <li>Sing-IN in another account</li>
+                <li>Log-In in another account</li>
+            </ul>
+        </div>
+        <article class="Home" id="Home">
+            <section class="display_groups">
+                hi
+                <div class="display" id="display">
+                    <!--display div after create-->
+                </div>
+            </section>
+            <button class="create_join_button" id="create_join_button">+</button>
+            <section class="create_join_display" id="create_join_display">
+                <button class="Create_Group_Button_Home">Create Group</button>
+                <button class="Join_Group_Button_Home">Join Group</button>
+            </section>
+            <!--create form-->
+            <section class="Create_Group" id="Create_Group">
+                <form action="">
+                    <label for="group_name">Group-Name:</label>
+                    <input type="text" id="group_name" placeholder="Enter the group name" required>
+                    <label for="leader_name">Leader-name:</label>
+                    <input type="text" id="leader_name" placeholder="Enter your name" required>
+                    <button type="submit" class="create_join_submit_button" id="create">Create</button>
+                    <button type="reset" class="reset_button">reset</button>
+                </form>
+            </section>
+
+            <!--join form-->
+            <section class="Join_Group" id="Join_Group">
+                <form action="">
+                    <label for="Join_Group_name">Group-Name:</label>
+                    <input type="text" id="Join_Group_name" placeholder="Enter the group name" required>
+                    <label for="Group_code">Group-code:</label>
+                    <input type="number" id="Group-code" placeholder="Entre the group code" required>
+                    <button type="submit" class="create_join_submit_button">Join</button>
+                    <button type="reset" class="reset_button" id="join">reset</button>
+                </form>
+            </section>
+        </article>
+        <article class="Feed-Back" id="Feed_back">
+            <section>
+                Feed-Back
+                <label for="Fn">Name:</label>
+                <input type="text" id="Fn" placeholder="Enter your name">
+                <label for="Fr">Suggestion</label>
+                <textarea name="" id="Fr" placeholder="write your Suggestion" cols="10" rows="5"></textarea>
+            </section>
+        </article>
+        <article class="Help" id="Help">
+            <section>
+                Help
+            </section>
+        </article>
+    </main>
+    <footer>
+        <p style="font-weight: bold;">&copy;VirtuaLearn</p>
+    </footer>
+    <script>
+        /*for navigation bar*/
+        document.getElementById("defaultopen").click();
+
+        /*for circle "+" button in Home*/
+        const circle_button = document.getElementById('create_join_button');
+        const hidden_create_join_buttons = document.getElementById('create_join_display');
+
+        circle_button.addEventListener('click', () => {
+            if (create_join_button.classList.contains('rotated_create_join_button')) {
+                circle_button.classList.remove('rotated_create_join_button');
+                hidden_create_join_buttons.classList.remove('show_create_join_buttons');
+            } else {
+                circle_button.classList.add('rotated_create_join_button');
+                hidden_create_join_buttons.classList.add('show_create_join_buttons');
+            }
+        });
+
+        /*display group after create and join*/
+
+        const input1 = document.getElementById('group_name')
+        const input2 = document.getElementById('leader_name')
+        const button = document.getElementById('create')
+        const display = document.getElementById('display')
+        button.addEventListener('click', () => {
+            display.innerHTML = `
+            <div class="display_div">
+            <a href="homepage.html">
+            <button>
+            <h1>${input1.value}</h1>
+            <p>${input2.value}</p>
+            </button>
+            </a>
+            </div>
+            `
+        });
+
+        /*for display create and join form*/
+
+        let Create_form = document.querySelector(".Create_Group");
+        let Join_form = document.querySelector(".Join_Group");
+        let Create_group_form_close = document.querySelector(".Create_form_close_button");
+        let Join_group_form_close = document.querySelector(".join_form_close_button");
+        let Create_Group_Button_Home = document.querySelector(".Create_Group_Button_Home");
+        let Join_Group_Button_Home = document.querySelector(".Join_Group_Button_Home");
+
+        Create_Group_Button_Home.addEventListener("click", () => {
+            Create_form.classList.add("Create_form_display");
+            Join_form.classList.remove("Join_form_display");
+        });
+
+        Join_Group_Button_Home.addEventListener("click", () => {
+            Join_form.classList.add("Join_form_display");
+            Create_form.classList.remove("Create_form_display");
+        });
+
+        Create_group_form_close.addEventListener("click", () => {
+            Create_form.classList.remove("Create_form_display");
+        });
+
+        Join_group_form_close.addEventListener("click", () => {
+            Join_form.classList.remove("Join_form_display");
+        });
+
+    </script>
+</body>
+
+</html>

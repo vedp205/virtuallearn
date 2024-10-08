@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quick Video Call</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.0/socket.io.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Quick Video Call</h1>
+
+        <div class="call-options">
+            <button onclick="generateCallCode()">Generate Call Code</button>
+        </div>
+
+        <div id="call-info" class="call-info"></div>
+
+        <div class="join-call">
+            <input type="text" id="joinCode" placeholder="Enter Call Code">
+            <button onclick="joinCallWithCode()">Join Call</button>
+        </div>
+
+        <div class="video-container">
+            <video id="localVideo" autoplay muted></video>
+            <video id="remoteVideo" autoplay></video>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
