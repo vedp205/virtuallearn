@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VirtualLearn</title>
+    <link rel="stylesheet" href="style1.css">
+    <link rel="stylesheet" href="clock.css">
+    <link rel="stylesheet" href="quick.css">
+</head>
+
+<body>
+    <header>
+        <h1 id="title_head">VirtualLearn</h1>
+        <nav>
+            <ul >
+                <li><a class="def_navbar" href="#" onclick="showPage('home')">Home</a></li>
+                <li><a class="def_navbar" href="#" onclick="showPage('messaging')">Messaging</a></li>
+                <li><a class="def_navbar" href="#" onclick="showPage('pdf')">PDF Section</a></li>
+                <li><a class="def_navbar" href="#" onclick="showPage('quiz')">Quiz Section</a></li>
+            </ul>
+        </nav>
+    </header>
+
+
+    <main>
+        <div class="clock">
+            <span id="hrs">00</span>
+            <span>:</span>
+            <span id="min">00</span>
+            <span>:</span>
+            <span id="sec">00</span>
+        </div>
+
+        <div id="home" class="page">
+            <h2>Home</h2>
+            <p>I am on the Home page.</p>
+        </div>
+
+        <div id="messaging" class="page" style="display: none;">
+            <h2>Messaging</h2>
+            <p>Hello from the Messaging page!</p>
+
+
+        </div>
+
+        <div id="pdf" class="page" style="display: none;">
+            <h2>PDF Section</h2>
+            <p>I am in the PDF Section.</p>
+        </div>
+
+        <div id="quiz" class="page" style="display: none;">
+            <div class="container">
+                <h1>Create a Quiz</h1>
+                <form id="createQuizForm">
+                    <label for="quizTitle">Quiz Title:</label>
+                    <input type="text" id="quizTitle" name="quizTitle" required>
+                    <div id="questionsContainer"></div>
+                    <button type="button" id="addQuestionBtn">Add Question</button>
+                    <button type="submit">Create Quiz</button>
+                </form>
+
+                <h1>Take a Quiz</h1>
+                <div id="takeQuizContainer"></div>
+                <button id="submitQuizBtn" style="display:none;">Submit Quiz</button>
+                <div id="quizResult"></div>
+            </div>
+        </div>
+    </main>
+
+    <script src="chat.js"></script>
+    <script src="clock.js"></script>
+    <script src="quick.js"></script>
+    <script>
+
+        function showPage(pageId) {
+            // Hide all pages
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => {
+                page.style.display = 'none';
+            });
+
+            // Show the selected page
+            document.getElementById(pageId).style.display = 'block';
+        }
+
+        // Show the home page by default
+        showPage('home');
+    </script>
+
+    <script src="https://cdn.socket.io/4.0.0/socket.io.min.js"></script>
+    <script>
+        const socket = io();
+        const chatbox = document.getElementById('chatbox');
+        const messageInput = document.getElementById('messageInput');
+        const sendButton = document.getElementById('sendButton');
+        const usernameInput = document.getElementById('username');
+
+        function displayMessage(username, message) {
+            const messageDiv = document.createElement('div');
+            messageDiv.innerText = username + ": " + message;
+            chatbox.appendChild(messageDiv);
+            chatbox.scrollTop = chatbox.scrollHeight; // Scroll to bottom
+        }
+
+        // When send button is clicked
+        sendButton.addEventListener('click', function () {
+            const message = messageInput.value;
+            const username = usernameInput.value;
+            if (message && username) {
+                displayMessage('You', message);
+
+                // Send message to the server
+                socket.emit('message', { username: username, message: message });
+                messageInput.value = ''; // Clear input field
+            }
+        });
+
+        // Listen for messages from the server
+        socket.on('message', function (data) {
+            displayMessage(data.username, data.message);
+        });
+
+        // Join the chat room
+        socket.emit('join', { username: usernameInput.value });
+    </script>
+</body>
+
+</html>

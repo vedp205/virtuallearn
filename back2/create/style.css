@@ -1,0 +1,310 @@
+
+*{
+    margin: 0px;
+    padding: 0px;;
+}
+header{
+    height: 15vh;
+    width: 100vw;
+    text-align: center;
+    background: #333;
+}
+header h1{
+    text-decoration: underline;
+    font-weight: bolder;
+    color: rgb(255, 255, 255);
+}
+nav{
+    display: flex;
+    flex-direction: row;
+    height: 6vh;
+    width: 100%;
+    border-right: 2px solid black;
+}
+nav ul{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row; 
+    height: 100%;
+    width: 95%;
+    padding-left: 50px;
+    font-size: 15px;
+}
+nav ul li{
+    height: 30px;
+    width: 100px;
+    list-style: none;
+    text-align: center;
+    padding: 1px;
+    margin: 10px;
+    transition: all 0.5s ease-in-out;
+    
+}
+nav ul li button{
+    height: 100%;
+    width: 100%;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-weight: bolder;
+    font-size: 15px;
+    color: white;
+    &:hover{
+        text-decoration: underline;
+    }
+}
+hr{
+    left: 7%;
+    width: 86%;
+}
+
+/*main*/
+
+main{
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+    height: 80vh;
+}
+.More{
+    display: none;
+    &:target{
+        display: block;
+    }
+}
+/*main's articals*/
+
+main article{
+    display: none;
+    width: 100%;
+    height: 100%;
+    &:target{
+        display: block;
+    }
+}
+/*Home*/
+.display_div{
+	display: inline-block;
+	width: 100%;
+	margin: 10px 0px;
+}
+.display_div button{
+	border: 0.5px solid black;
+	border-radius: 15px;
+	cursor: pointer;
+	height: 135px;
+	width: 100%;
+	background: #82828296;
+}
+.display_div button h1{
+	margin: -11px 24px;
+	font-size: 28px;
+	text-align: start;
+}
+.display_div button p{
+	margin: 19px 25px;
+	font-size: 14px;
+	text-align: start;
+}
+
+/*Create join "+" button*/
+.create_join_button{
+    z-index: 2;
+    position: fixed;
+    left: 1100px;
+    top: 480px;
+    height: 45px;
+    width: 45px;
+    background: #ffffff;
+    border-radius: 45px;
+    border: none;
+    box-shadow: 2px 2px 10px black;
+    font-size: 31px;
+    color: orange;
+    &:hover{
+        background: #e4e4e4d6;
+    }
+}
+.rotated_create_join_button{
+    z-index: 2;
+    transform: rotate(45deg);
+    position: fixed;
+    left: 1100px;
+    top: 480px;
+    height: 45px;
+    width: 45px;
+    background: #ffffff;
+    border-radius: 45px;
+    border: none;
+    box-shadow: 2px 2px 10px black;
+    font-size: 31px;
+    color: orange;
+    cursor: pointer;
+    &:hover{
+        background: #e4e4e4d6;
+    }
+}
+
+/*create and join button in home after click "+" button*/
+
+.create_join_display{
+    display: none;
+    
+}
+.show_create_join_buttons{
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    position: fixed;
+    top: 485px;
+    width: 100%;
+	background-color: rgb(255, 255, 255);
+	border: none;
+	animation: slide-up 1s forwards;
+}
+@keyframes slide-up{
+    0%{
+        transform: translateY(50px);
+    }
+    100%{
+        transform: translateY(0);
+    }
+}
+.show_create_join_buttons button{
+    width: 100%;
+    height: 30px;
+    text-align: center;
+    font-size: 15px;
+    font-weight: bolder;
+    border: none;
+    cursor: pointer;
+    &:hover{
+        text-decoration: underline;
+    }
+}
+.Create_Group_Button_Home{
+    background: linear-gradient(to right,
+    rgb(255, 195, 110),
+    rgb(255, 146, 91));
+    color: rgb(231, 231, 231);
+    cursor: pointer;
+}
+.Join_Group_Button_Home{
+    background: rgb(231, 231, 231);
+    color: rgb(240, 136, 9);
+    cursor: pointer;
+}
+
+/*Create group section*/
+
+.Create_Group{
+    display: none;
+    height: 100%;
+    width: 100%;
+    background: #ffffff;
+}
+.Create_Group form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    background: #ffffff;
+}
+.Create_Group form input{
+    margin-bottom: 20px;
+    height: 40px;
+    width: 300px;
+    border: none;
+    border-bottom: 1px solid black;
+    font-size: 15px;
+    &::placeholder{
+        font-size: 15px;
+    }
+}
+
+.Create_form_display{
+	display: flex;
+}
+
+/*Join group section*/
+
+.Join_Group {
+    display: none;
+    height: 100%;
+    width: 100%;
+    background: #ffffff;
+}
+.Join_Group form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    background: #ffffff;
+}
+.Join_Group form input{
+    margin-bottom: 20px;
+    height: 40px;
+    width: 300px;
+    border: none;
+    border-bottom: 1px solid black;
+    font-size: 15px;
+    &::placeholder{
+        font-size: 15px;
+    }
+}
+
+.Join_form_display{
+    display: flex;
+}
+
+
+
+/*create join button styles*/
+
+.create_join_submit_button{
+    height: 40px;
+    width: 300px;
+    border: none;
+    border-radius: 50px;
+    background: linear-gradient(to right,
+    rgb(255, 195, 110),
+    rgb(255, 146, 91));
+    color: white;
+    font-size: 15px;
+    cursor: pointer;
+    &:hover{
+    background: linear-gradient(to right,
+    rgb(216, 165, 93),
+    rgb(203, 116, 72));
+    }
+}
+.reset_button{
+    margin-top: 20px;
+    background: #b2b2b2;
+    color: #000;
+    height: 40px;
+    width: 300px;
+    border: none;
+    border-radius: 50px;
+    font-size: 15px;
+    cursor: pointer;
+    &:hover{
+        background: #8a8a8a;
+    }
+}
+
+/*footer*/
+
+footer{
+    width: 100vw;
+    height: 7%;
+    border-top: 0.3px solid rgba(30, 30, 30, 0.34);
+    font-weight: bold;
+    text-align: end;
+}
